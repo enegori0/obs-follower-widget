@@ -151,9 +151,13 @@ if (isWidget) {
   if (location.hash && location.hash.includes('access_token')) {
     var hp = new URLSearchParams(location.hash.replace('#',''));
     var accessToken = hp.get('access_token');
-    var stateRaw = hp.get('state');
+    var stateKey = hp.get('state');
     var st = {};
-    try { st = JSON.parse(decodeURIComponent(stateRaw)); } catch(e){}
+    // localStorageから設定値を取得
+    try {
+      var saved = localStorage.getItem('tw_state_'+stateKey);
+      if (saved) { st = JSON.parse(saved); localStorage.removeItem('tw_state_'+stateKey); }
+    } catch(e){}
     history.replaceState(null,'',location.pathname);
 
     if (accessToken) {
@@ -185,13 +189,16 @@ if (isWidget) {
     var g = parseInt(document.getElementById('iGoal').value)||500;
     var s = parseInt(document.getElementById('iStep').value)||0;
     var t = document.getElementById('iTheme').value;
-    var state = encodeURIComponent(JSON.stringify({g:g,s:s,t:t}));
+    // stateはシンプルなランダム文字列にする（Twitch推奨）
+    var stateKey = Math.random().toString(36).substring(2,15);
+    // 設定値はlocalStorageに保存
+    try { localStorage.setItem('tw_state_'+stateKey, JSON.stringify({g:g,s:s,t:t})); } catch(e){}
     var url = 'https://id.twitch.tv/oauth2/authorize'
       + '?client_id=' + CLIENT_ID
       + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
       + '&response_type=token'
       + '&scope=moderator%3Aread%3Afollowers'
-      + '&state=' + state;
+      + '&state=' + stateKey;
     location.href = url;
   });
 
