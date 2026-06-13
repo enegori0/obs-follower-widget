@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>フォロワー目標ウィジェット</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Fredoka',sans-serif; background:#f5f0ff; color:#2d2040; overflow-x:hidden; }
+body { font-family:'Fredoka','M PLUS Rounded 1c',sans-serif; background:#f3f8fb; color:#3a4754; overflow-x:hidden; }
 
 /* ── ログイン画面 ── */
 #login { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
@@ -16,7 +16,7 @@ body { font-family:'Fredoka',sans-serif; background:#f5f0ff; color:#2d2040; over
   box-shadow:0 8px 40px rgba(100,60,200,0.13);
 }
 .login-header {
-  background:linear-gradient(135deg,#9b72d8,#b48fe0);
+  background:linear-gradient(135deg,#7db8d9,#a8d8ec);
   padding:28px 32px 22px;
   text-align:center;
 }
@@ -27,51 +27,51 @@ body { font-family:'Fredoka',sans-serif; background:#f5f0ff; color:#2d2040; over
 /* ── 設定エリア ── */
 .setup-body { padding:24px 28px 20px; }
 .setup-section-title {
-  font-size:13px; font-weight:700; color:#7c5cb8;
+  font-size:13px; font-weight:700; color:#5da3cc;
   letter-spacing:0.5px; text-transform:uppercase;
   margin-bottom:14px; display:flex; align-items:center; gap:6px;
 }
-.setup-section-title::before { content:''; display:block; width:12px; height:12px; background:#9b72d8; border-radius:3px; }
+.setup-section-title::before { content:''; display:block; width:12px; height:12px; background:#7db8d9; border-radius:3px; }
 
 .field { margin-bottom:14px; }
-.field label { display:block; font-size:12px; color:#8a7aaa; margin-bottom:5px; font-weight:600; }
+.field label { display:block; font-size:12px; color:#7a8a99; margin-bottom:5px; font-weight:600; }
 .field input[type=text],
 .field input[type=number],
 .field select {
-  width:100%; background:#f8f5ff; border:1.5px solid #e0d8f0;
-  border-radius:10px; color:#2d2040; font-size:14px;
+  width:100%; background:#f8fbfd; border:1.5px solid #cfe3ef;
+  border-radius:10px; color:#3a4754; font-size:14px;
   font-family:'Fredoka',sans-serif;
   padding:9px 13px; outline:none; transition:border-color 0.15s;
 }
-.field input:focus, .field select:focus { border-color:#9b72d8; background:white; }
+.field input:focus, .field select:focus { border-color:#7db8d9; background:white; }
 .row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 
 /* チェックボックス */
 .check-row { display:flex; align-items:center; gap:9px; margin-bottom:10px; cursor:pointer; }
-.check-row input[type=checkbox] { width:16px; height:16px; accent-color:#9b72d8; cursor:pointer; }
-.check-row span { font-size:13px; color:#5a4870; }
+.check-row input[type=checkbox] { width:16px; height:16px; accent-color:#7db8d9; cursor:pointer; }
+.check-row span { font-size:13px; color:#3a4754; }
 
 /* ── スライダー ── */
 .slider-row { margin-bottom:16px; }
 .slider-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
-.slider-label span { font-size:12px; color:#8a7aaa; font-weight:600; }
-.slider-label .slider-val { font-size:12px; color:#9b72d8; font-weight:700; background:#f0e8ff; padding:2px 8px; border-radius:20px; }
+.slider-label span { font-size:12px; color:#7a8a99; font-weight:600; }
+.slider-label .slider-val { font-size:12px; color:#7db8d9; font-weight:700; background:#dceef7; padding:2px 8px; border-radius:20px; }
 input[type=range] {
   -webkit-appearance:none; width:100%; height:6px;
-  background:#e8e0f5; border-radius:3px; outline:none; cursor:pointer;
+  background:#dceef7; border-radius:3px; outline:none; cursor:pointer;
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance:none; width:18px; height:18px;
-  border-radius:50%; background:#d44f8e;
+  border-radius:50%; background:#5da3cc;
   box-shadow:0 2px 6px rgba(212,79,142,0.4); cursor:pointer;
 }
 
 /* ── カラーピッカー ── */
 .color-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .color-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
-.color-item label { font-size:11px; color:#8a7aaa; text-align:center; line-height:1.3; }
+.color-item label { font-size:11px; color:#7a8a99; text-align:center; line-height:1.3; }
 .color-item input[type=color] {
-  width:44px; height:36px; border:1.5px solid #e0d8f0;
+  width:44px; height:36px; border:1.5px solid #cfe3ef;
   border-radius:8px; cursor:pointer; background:none; padding:2px;
 }
 .color-item input[type=color]::-webkit-color-swatch-wrapper { padding:0; border-radius:6px; }
@@ -80,17 +80,17 @@ input[type=range]::-webkit-slider-thumb {
 /* ── プリセットアイコン ── */
 .preset-icons { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
 .preset-icon {
-  width:40px; height:40px; border-radius:50%; border:2px solid #e0d8f0;
+  width:40px; height:40px; border-radius:50%; border:2px solid #cfe3ef;
   display:flex; align-items:center; justify-content:center;
-  font-size:20px; cursor:pointer; background:#f8f5ff; transition:all 0.15s;
+  font-size:20px; cursor:pointer; background:#f8fbfd; transition:all 0.15s;
 }
-.preset-icon:hover { border-color:#9b72d8; background:#f0e8ff; transform:scale(1.08); }
-.preset-icon.selected { border-color:#d44f8e; background:#ffe0ef; box-shadow:0 0 0 3px rgba(212,79,142,0.15); }
+.preset-icon:hover { border-color:#7db8d9; background:#dceef7; transform:scale(1.08); }
+.preset-icon.selected { border-color:#5da3cc; background:#ffe0ef; box-shadow:0 0 0 3px rgba(212,79,142,0.15); }
 
 /* ── URLフィールド ── */
-.url-area { background:#f8f5ff; border:1.5px solid #e0d8f0; border-radius:10px; padding:10px 13px; margin-bottom:10px; }
-.url-area p { font-size:11px; color:#9b72d8; margin-bottom:5px; font-weight:600; }
-textarea { width:100%; background:transparent; border:none; color:#5a4870; font-size:11px; font-family:monospace; resize:none; height:46px; outline:none; word-break:break-all; }
+.url-area { background:#f8fbfd; border:1.5px solid #cfe3ef; border-radius:10px; padding:10px 13px; margin-bottom:10px; }
+.url-area p { font-size:11px; color:#7db8d9; margin-bottom:5px; font-weight:600; }
+textarea { width:100%; background:transparent; border:none; color:#3a4754; font-size:11px; font-family:monospace; resize:none; height:46px; outline:none; word-break:break-all; }
 
 /* ── ボタン ── */
 .twitch-btn {
@@ -102,18 +102,18 @@ textarea { width:100%; background:transparent; border:none; color:#5a4870; font-
 }
 .twitch-btn:hover { background:#7d3cdf; transform:translateY(-1px); box-shadow:0 6px 20px rgba(145,71,255,0.4); }
 .copy-btn {
-  width:100%; padding:10px; background:#9b72d8; color:white;
+  width:100%; padding:10px; background:#7db8d9; color:white;
   border:none; border-radius:10px; font-size:14px; font-weight:700;
   font-family:'Fredoka',sans-serif; cursor:pointer; margin-bottom:8px;
   transition:background 0.15s;
 }
-.copy-btn:hover { background:#7c5cb8; }
+.copy-btn:hover { background:#5da3cc; }
 .reset-btn {
-  width:100%; padding:9px; background:#f8f5ff; color:#8a7aaa;
-  border:1.5px solid #e0d8f0; border-radius:10px; font-size:13px; font-weight:600;
+  width:100%; padding:9px; background:#f8fbfd; color:#7a8a99;
+  border:1.5px solid #cfe3ef; border-radius:10px; font-size:13px; font-weight:600;
   font-family:'Fredoka',sans-serif; cursor:pointer; transition:all 0.15s;
 }
-.reset-btn:hover { background:#f0e8ff; color:#7c5cb8; border-color:#c4a8f0; }
+.reset-btn:hover { background:#dceef7; color:#5da3cc; border-color:#c4a8f0; }
 
 .obs-hint { background:#efffee; border-left:3px solid #6dbf6d; border-radius:8px; padding:8px 12px; font-size:12px; color:#5a7a5a; line-height:1.6; }
 .obs-hint b { color:#4a8a4a; }
