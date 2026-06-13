@@ -26,6 +26,9 @@ body { font-family:'Fredoka','M PLUS Rounded 1c',sans-serif; background:#f3f8fb;
 
 /* ── 設定エリア ── */
 .setup-body { padding:24px 28px 20px; }
+.steps { margin-bottom:20px; }
+.step { display:flex; align-items:center; gap:10px; font-size:13px; color:#3a4754; font-weight:600; margin-bottom:10px; }
+.step-n { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:#7db8d9; color:white; font-size:12px; font-weight:700; flex-shrink:0; }
 .setup-section-title {
   font-size:13px; font-weight:700; color:#5da3cc;
   letter-spacing:0.5px; text-transform:uppercase;
@@ -140,139 +143,39 @@ textarea { width:100%; background:transparent; border:none; color:#3a4754; font-
     </div>
 
     <div class="setup-body">
-      <div class="setup-cols">
-        <!-- 左カラム -->
-        <div>
-          <div class="setup-section-title">基本設定</div>
+      <div class="steps">
+        <div class="step"><span class="step-n">1</span> 設定を入力する</div>
+        <div class="step"><span class="step-n">2</span> 「Twitchでログイン」を押す</div>
+        <div class="step"><span class="step-n">3</span> 生成されたURLをOBSに貼る</div>
+      </div>
 
-          <div class="field">
-            <label>タイトル（空白にすると非表示）</label>
-            <input type="text" id="iTitle" value="フォロワー目標" placeholder="フォロワー目標">
-          </div>
-
-          <div class="row2">
-            <div class="field">
-              <label>現在 (Current)</label>
-              <input type="number" id="iCurrent" value="0" min="0">
-            </div>
-            <div class="field">
-              <label>目標 (Max)</label>
-              <input type="number" id="iGoal" value="500" min="1">
-            </div>
-          </div>
-
-          <div class="check-row">
-            <input type="checkbox" id="iShowCount" checked>
-            <span>カウンターを表示する</span>
-          </div>
-          <div class="check-row">
-            <input type="checkbox" id="iShowFrame" checked>
-            <span>外枠（背景）を表示する</span>
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label>デザインテーマ</label>
-            <select id="iTheme">
-              <option value="battery">A · 電池（チャージ）</option>
-              <option value="rocket">D · ロケット</option>
-              <option value="thermo">K1 · 温度計（クラシック）</option>
-              <option value="thermo-gauge">K2 · 温度計（丸ゲージ）</option>
-              <option value="boba">L1 · タピオカ（トール）</option>
-              <option value="boba-round">L2 · タピオカ（まんまる）</option>
-              <option value="battery-h">A横 · 電池（横型）</option>
-              <option value="rocket-h">D横 · ロケット（横型）</option>
-              <option value="segbar">H1 · セグメントバー（横型）</option>
-              <option value="equalizer">H7 · イコライザー（横型）</option>
-              <option value="mendako">🩷 メンダコ（横型）</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>自動増加人数（0=無効）</label>
-            <input type="number" id="iStep" value="0" min="0">
-          </div>
-
-          <hr class="divider">
-          <div class="setup-section-title">プリセット アイコン</div>
-          <div class="preset-icons" id="presetIcons">
-            <div class="preset-icon selected" data-icon="🐝">🐝</div>
-            <div class="preset-icon" data-icon="⭐">⭐</div>
-            <div class="preset-icon" data-icon="🐰">🐰</div>
-            <div class="preset-icon" data-icon="❤️">❤️</div>
-            <div class="preset-icon" data-icon="🐾">🐾</div>
-            <div class="preset-icon" data-icon="🦊">🦊</div>
-            <div class="preset-icon" data-icon="🐱">🐱</div>
-            <div class="preset-icon" data-icon="🦍">🦍</div>
-          </div>
-          <div class="field" style="margin-top:10px;">
-            <label>イラストURL（URLが優先されます）</label>
-            <input type="text" id="iIconUrl" placeholder="https://...">
-          </div>
+      <div class="row2">
+        <div class="field">
+          <label>目標フォロワー数</label>
+          <input type="number" id="iGoal" value="500" min="1">
         </div>
-
-        <!-- 右カラム -->
-        <div>
-          <div class="setup-section-title">表示設定</div>
-
-          <div class="slider-row">
-            <div class="slider-label">
-              <span>アイコンの大きさ (Icon Size)</span>
-              <span class="slider-val" id="iconSizeVal">54px</span>
-            </div>
-            <input type="range" id="iIconSize" min="20" max="120" value="54" oninput="document.getElementById('iconSizeVal').textContent=this.value+'px'">
-          </div>
-
-          <div class="slider-row">
-            <div class="slider-label">
-              <span>全体の大きさ (Widget Scale)</span>
-              <span class="slider-val" id="scaleVal">1.6x</span>
-            </div>
-            <input type="range" id="iScale" min="0.5" max="3" step="0.1" value="1.6" oninput="document.getElementById('scaleVal').textContent=parseFloat(this.value).toFixed(1)+'x'">
-          </div>
-
-          <div class="slider-row">
-            <div class="slider-label">
-              <span>バーの太さ (Bar Height)</span>
-              <span class="slider-val" id="barHeightVal">18px</span>
-            </div>
-            <input type="range" id="iBarHeight" min="6" max="40" value="18" oninput="document.getElementById('barHeightVal').textContent=this.value+'px'">
-          </div>
-
-          <hr class="divider">
-          <div class="setup-section-title">カラー設定</div>
-          <div class="color-grid">
-            <div class="color-item">
-              <label>外枠の背景色<br>(bg-color)</label>
-              <input type="color" id="cBg" value="#ffffff">
-            </div>
-            <div class="color-item">
-              <label>バーの底色<br>(track-bg)</label>
-              <input type="color" id="cTrack" value="#ffd8e8">
-            </div>
-            <div class="color-item">
-              <label>進捗バーの色<br>(fill-color)</label>
-              <input type="color" id="cFill" value="#f5a0c0">
-            </div>
-            <div class="color-item">
-              <label>タイトルの色<br>(text-main)</label>
-              <input type="color" id="cTextMain" value="#444444">
-            </div>
-            <div class="color-item">
-              <label>カウンターの色<br>(text-sub)</label>
-              <input type="color" id="cTextSub" value="#e87aaa">
-            </div>
-            <div class="color-item">
-              <label>アイコン背景色<br>(icon-bg)</label>
-              <input type="color" id="cIconBg" value="#fff0f6">
-            </div>
-          </div>
-
-          <hr class="divider">
-          <button class="reset-btn" onclick="resetSettings()">設定をデフォルトに戻す</button>
+        <div class="field">
+          <label>自動増加人数（0=無効）</label>
+          <input type="number" id="iStep" value="0" min="0">
         </div>
       </div>
 
-      <hr class="divider">
+      <div class="field">
+        <label>デザインテーマ</label>
+        <select id="iTheme">
+          <option value="battery">A · 電池（チャージ）</option>
+          <option value="rocket">D · ロケット</option>
+          <option value="thermo">K1 · 温度計（クラシック）</option>
+          <option value="thermo-gauge">K2 · 温度計（丸ゲージ）</option>
+          <option value="boba">L1 · タピオカ（トール）</option>
+          <option value="boba-round">L2 · タピオカ（まんまる）</option>
+          <option value="battery-h">A横 · 電池（横型）</option>
+          <option value="rocket-h">D横 · ロケット（横型）</option>
+          <option value="segbar">H1 · セグメントバー（横型）</option>
+          <option value="equalizer">H7 · イコライザー（横型）</option>
+          <option value="mendako">🩷 メンダコ（横型）</option>
+        </select>
+      </div>
 
       <button class="twitch-btn" id="loginBtn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
@@ -285,8 +188,9 @@ textarea { width:100%; background:transparent; border:none; color:#3a4754; font-
           <textarea id="urlText" readonly></textarea>
         </div>
         <button class="copy-btn" id="copyBtn">URLをコピー</button>
-      <div class="obs-hint">
-        <b>OBS設定：</b> 幅 <b>372</b> / 高さ <b>462</b>（横型は高さ <b>210</b>）
+        <div class="obs-hint">
+          <b>OBS設定：</b> 幅 <b>372</b> / 高さ <b>462</b>（横型は高さ <b>210</b>）
+        </div>
       </div>
     </div>
   </div>
@@ -360,60 +264,14 @@ if (isWidget) {
 
   // ログインボタン
 
-  // ── プリセットアイコン選択 ──
-  document.getElementById('presetIcons').addEventListener('click',function(e){
-    var btn=e.target.closest('.preset-icon');if(!btn)return;
-    document.querySelectorAll('.preset-icon').forEach(function(b){b.classList.remove('selected');});
-    btn.classList.add('selected');
-  });
-
-  // ── 設定リセット ──
-  window.resetSettings=function(){
-    document.getElementById('iTitle').value='フォロワー目標';
-    document.getElementById('iCurrent').value='0';
-    document.getElementById('iGoal').value='500';
-    document.getElementById('iStep').value='0';
-    document.getElementById('iShowCount').checked=true;
-    document.getElementById('iShowFrame').checked=true;
-    document.getElementById('iIconSize').value='54';document.getElementById('iconSizeVal').textContent='54px';
-    document.getElementById('iScale').value='1.6';document.getElementById('scaleVal').textContent='1.6x';
-    document.getElementById('iBarHeight').value='18';document.getElementById('barHeightVal').textContent='18px';
-    document.getElementById('cBg').value='#ffffff';
-    document.getElementById('cTrack').value='#ffd8e8';
-    document.getElementById('cFill').value='#f5a0c0';
-    document.getElementById('cTextMain').value='#444444';
-    document.getElementById('cTextSub').value='#e87aaa';
-    document.getElementById('cIconBg').value='#fff0f6';
-    document.getElementById('iIconUrl').value='';
-    document.getElementById('iTheme').value='battery';
-    document.querySelectorAll('.preset-icon').forEach(function(b,i){b.classList.toggle('selected',i===0);});
-  };
-
   document.getElementById('loginBtn').addEventListener('click', function(){
     var g = parseInt(document.getElementById('iGoal').value)||500;
     var s = parseInt(document.getElementById('iStep').value)||0;
     var t = document.getElementById('iTheme').value;
-    // カスタム設定収集
-    var extra = {
-      title: document.getElementById('iTitle').value,
-      showCount: document.getElementById('iShowCount').checked,
-      showFrame: document.getElementById('iShowFrame').checked,
-      iconSize: document.getElementById('iIconSize').value,
-      scale: document.getElementById('iScale').value,
-      barHeight: document.getElementById('iBarHeight').value,
-      cBg: document.getElementById('cBg').value,
-      cTrack: document.getElementById('cTrack').value,
-      cFill: document.getElementById('cFill').value,
-      cTextMain: document.getElementById('cTextMain').value,
-      cTextSub: document.getElementById('cTextSub').value,
-      cIconBg: document.getElementById('cIconBg').value,
-      iconUrl: document.getElementById('iIconUrl').value,
-      icon: (document.querySelector('.preset-icon.selected')||{}).dataset&&document.querySelector('.preset-icon.selected').dataset.icon||'',
-    };
     // stateはシンプルなランダム文字列にする（Twitch推奨）
     var stateKey = Math.random().toString(36).substring(2,15);
     // 設定値はlocalStorageに保存
-    try { localStorage.setItem('tw_state_'+stateKey, JSON.stringify({g:g,s:s,t:t,extra:extra})); } catch(e){}
+    try { localStorage.setItem('tw_state_'+stateKey, JSON.stringify({g:g,s:s,t:t})); } catch(e){}
     var url = 'https://id.twitch.tv/oauth2/authorize'
       + '?client_id=' + CLIENT_ID
       + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
