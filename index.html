@@ -389,7 +389,7 @@ function Shell(p){
         ce('span',{style:{fontSize:38,fontWeight:600,lineHeight:.9,color:p.accent,fontVariantNumeric:'tabular-nums',textShadow:'0 0 18px '+p.accent+'66, 0 1px 8px rgba(0,0,0,.6)'}},fm(p.count)),
         ce('span',{style:{fontSize:18,color:TH.textLo,textShadow:'0 1px 6px rgba(0,0,0,.6)'}},'/ '+fm(p.goal))
       ),
-      ce('div',{style:{fontSize:12.5,fontWeight:600,padding:'5px 11px',borderRadius:999,background:p.reached?p.accent:'rgba(0,0,0,.32)',color:p.reached?TH.inkDeep:TH.textHi,border:'1px solid '+(p.reached?p.accent:'rgba(255,255,255,.18)'),whiteSpace:'nowrap',backdropFilter:'blur(2px)'}},
+      ce('div',{style:{fontSize:15,fontWeight:700,padding:'7px 14px',borderRadius:999,background:p.reached?p.accent:'rgba(0,0,0,.4)',color:p.reached?TH.inkDeep:TH.textHi,border:'1px solid '+(p.reached?p.accent:'rgba(255,255,255,.22)'),whiteSpace:'nowrap',backdropFilter:'blur(2px)',textShadow:p.reached?'none':'0 1px 6px rgba(0,0,0,.5)'}},
         p.reached?'✦ 目標達成！':'あと '+fm(rem)+' 人')
     )
   );
