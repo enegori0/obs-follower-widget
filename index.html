@@ -1022,12 +1022,24 @@ function EqualizerHWidget({ count, goal, reached }) {
 
 var WS={battery:BatteryW,rocket:RocketW,thermo:ThermometerWidget,'thermo-gauge':ThermoGaugeWidget,boba:BobaWidget,'boba-round':BobaRoundWidget,'battery-h':BatteryHW,'rocket-h':RocketHW,segbar:SegBarHWidget,equalizer:EqualizerHWidget,mendako:MendakoW};
 
+// ── テーマ使用状況トラッキング(Cloudflare Worker) ──
+var STATS_API = 'https://gorilla-stats.akumadekojinseo.workers.dev';
+function trackThemeUse(themeKey){
+  try{
+    var sentKey = 'gorilla_tracked_' + themeKey + '_' + new Date().toISOString().slice(0,10);
+    if(sessionStorage.getItem(sentKey)) return; // 1セッション1テーマ1日1回まで
+    sessionStorage.setItem(sentKey, '1');
+    fetch(STATS_API + '/track?theme=' + encodeURIComponent(themeKey), { method:'POST' }).catch(function(){});
+  }catch(e){}
+}
+
 function App(){
   var countState=_.useState(0); var count=countState[0],setCount=countState[1];
   var goalState=_.useState(goal); var curGoal=goalState[0],setCurGoal=goalState[1];
   var okState=_.useState(true); var ok=okState[0],setOk=okState[1];
   var reached=count>=curGoal;
   var W=WS[theme]||BatteryW;
+  _.useEffect(function(){ trackThemeUse(theme); },[theme]);
   _.useEffect(function(){
     async function fd(){
       try{
